@@ -1,0 +1,16 @@
+{
+	"name": "nice-future-marketplace",
+	"owner": {
+		"name": "nice-future-company"
+	},
+	"metadata": {
+		"description": "nice-future-company Claude Code 플러그인 마켓플레이스 — 커리어/이력서 등 셀프 파이프라인 도구 모음"
+	},
+	"plugins": [
+		{
+			"name": "leasume",
+			"source": "./plugins/leasume",
+			"description": "개발자 이력서 작성 멘토링 플러그인: 멘티별 vault에 진단(L0~L3)→인터뷰 드릴다운(grill)→STAR/SBI 에피소드→HTML 이력서까지 셀프 파이프라인. 52세션 멘토링 패턴 기반."
+		}
+	]
+}
