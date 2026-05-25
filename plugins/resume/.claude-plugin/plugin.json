@@ -1,0 +1,22 @@
+{
+  "name": "resume",
+  "version": "0.3.0",
+  "description": "개발자 이력서 멘토링 플러그인. 5why 드릴다운 + STAR/SBI 에피소드 + 멘티 vault 영속 저장.",
+  "author": {
+    "name": "leaphop"
+  },
+  "keywords": [
+    "resume",
+    "career",
+    "이력서",
+    "mentoring",
+    "개발자-이력서-멘토링",
+    "vault",
+    "5why",
+    "star",
+    "sbi",
+    "dig",
+    "interview",
+    "pipeline"
+  ]
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>박재원 (가명) — 이력서 (가공 예시)</title>
+  <style>
+    /* 인라인 CSS — ATS 친화: 단일 컬럼, 시맨틱 태그, 폰트 기본값 */
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.6; }
+    h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 4px; }
+    h2 { font-size: 1.3em; border-bottom: 1px solid #ccc; margin-top: 28px; padding-bottom: 4px; }
+    h3 { font-size: 1.05em; margin-top: 18px; margin-bottom: 4px; }
+    .meta { color: #666; font-size: 0.9em; margin-bottom: 20px; }
+    .banner-warning { background: #fff3cd; border: 1px solid #ffc107; padding: 12px 16px; margin-bottom: 24px; border-radius: 4px; font-size: 0.9em; }
+    .banner-warning strong { display: block; margin-bottom: 4px; }
+    .banner-fictional { background: #e8f4fd; border: 1px solid #90caf9; padding: 10px 16px; margin-bottom: 16px; border-radius: 4px; font-size: 0.85em; color: #1565c0; }
+    ul { padding-left: 20px; margin: 8px 0; }
+    li { margin-bottom: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.95em; }
+    th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+    th { background: #f5f5f5; }
+    section { margin-bottom: 8px; }
+    article { margin-bottom: 16px; }
+    .period { color: #555; font-size: 0.9em; }
+    .project-title { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<!-- 가공 데이터 고지 -->
+<div class="banner-fictional">
+  <strong>가공(fictional) 예시 데이터</strong>
+  이 이력서는 resume 플러그인 예시용으로 생성된 가공 데이터입니다. 실제 인물·회사·수치가 아닙니다.
+</div>
+
+<!-- 추정 마커 경고 배너 (draft.md의 > 추정: 항목 1개 strip됨) -->
+<div class="banner-warning">
+  <strong>검토 필요: 1개 항목에 확인이 필요한 내용이 있습니다.</strong>
+  draft.md 에서 <code>&gt; 추정:</code> 마커를 검색해 직접 확인하세요.<br>
+  해당 항목: 상품조회 API 응답시간 수치(20초→0.8초)의 부하 조건·측정 환경이
+  인터뷰에서 명확히 검증되지 않았습니다. 프로덕션 APM 기준 수치로 교체를 권장합니다.
+</div>
+
+<header>
+  <h1>박재원 <span style="font-size:0.6em; color:#888;">(가명, fictional)</span></h1>
+  <p class="meta">백엔드 개발자 · Java/Spring Boot · 경력 3년</p>
+</header>
+
+<main>
+
+  <section aria-label="요약">
+    <h2>요약</h2>
+    <p>
+      Java/Spring Boot 기반 백엔드 개발 3년 경력.
+      핀테크 스타트업에서 상품조회 API 성능 문제를 직접 진단하고
+      Redis 캐시 아키텍처를 설계·도입한 경험이 있습니다.
+      기술 선택 시 read/write 특성과 데이터 정합성 요구사항을 함께 고려합니다.
+    </p>
+  </section>
+
+  <section aria-label="경력">
+    <h2>경력</h2>
+
+    <article>
+      <h3>핀테크 스타트업 A사 <span class="period">| 백엔드 개발자 | 2023-03 ~ 현재</span></h3>
+
+      <p class="project-title">상품조회 API 응답 지연 해소 — Redis Look-aside 캐시 도입
+        <span class="period">(2024-06 ~ 2024-08)</span>
+      </p>
+      <p>
+        PM 이슈 제보로 시작해 APM 로그로 원인(풀스캔 + N+1 쿼리)을 직접 특정했습니다.
+        상품조회의 read-heavy 특성(읽기:쓰기 ≈ 95:5)을 근거로 Look-aside 패턴을 선택했고,
+        TTL 5분 + 명시적 eviction을 조합해 데이터 정합성을 유지했습니다.
+      </p>
+      <!-- > 추정: 수치 strip됨. 배너에 집계 -->
+
+      <p class="project-title">회원 인증 시스템 JWT 전환
+        <span class="period">(2023-09 ~ 2023-11)</span>
+      </p>
+      <p>
+        서버 수평 확장 계획에 따른 sticky session 의존 제거가 목적이었습니다.
+        Spring Security + JWT 필터 체인을 구성하고 Access/Refresh Token 분리 발급을 구현했습니다.
+      </p>
+    </article>
+
+    <article>
+      <h3>SI 업체 B사 <span class="period">| 개발자 | 2022-01 ~ 2023-02</span></h3>
+      <p>
+        레거시 JSP 기반 시스템 유지보수 및 Oracle DB 프로시저 작성.
+        고객사 요청 기능을 요구사항 분석부터 배포까지 담당했습니다.
+      </p>
+    </article>
+  </section>
+
+  <section aria-label="기술 스택">
+    <h2>기술 스택</h2>
+    <table>
+      <thead>
+        <tr><th>구분</th><th>기술</th><th>수준</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>언어/프레임워크</td><td>Java, Spring Boot</td><td>실무 3년</td></tr>
+        <tr><td>데이터베이스</td><td>MySQL, Oracle</td><td>실무 3년</td></tr>
+        <tr><td>캐시</td><td>Redis (Look-aside, TTL·eviction 설계 경험)</td><td>최적화경험</td></tr>
+        <tr><td>인증</td><td>JWT, Spring Security</td><td>실무 경험</td></tr>
+        <tr><td>레거시</td><td>JSP, Oracle 프로시저</td><td>유지보수 경험</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section aria-label="교육">
+    <h2>교육</h2>
+    <p>OO대학교 컴퓨터공학과 졸업 (2022-02)</p>
+  </section>
+
+</main>
+
+</body>
+</html>
