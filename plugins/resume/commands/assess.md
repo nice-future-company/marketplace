@@ -20,6 +20,12 @@ allowed-tools: Bash
 비0 exit 시 오류 출력 후 중단.
 
 `.resume-session` 읽기. 파일이 없으면:
+```
+오류: {id} vault를 찾을 수 없습니다.
+먼저 /resume:init {id} 를 실행하세요.
+```
+
+파일이 있으면 → stage-gate 확인 후 진행.
 
 #### stage-gate (재진단 clobber 방지)
 
@@ -30,10 +36,6 @@ allowed-tools: Bash
 계속하려면 "확인"을 입력하세요. 취소하려면 다른 입력을 하세요.
 ```
 "확인" 이외의 입력 시 중단. "확인" 입력 시 아래 절차 계속 진행.
-```
-오류: {id} vault를 찾을 수 없습니다.
-먼저 /resume:init {id} 를 실행하세요.
-```
 
 ### 2단계: 이력서 파일 확인 (결정적 체크)
 
@@ -69,7 +71,7 @@ allowed-tools: Bash
 L0: 파일 없음 OR 경력 불릿 3개 미만 OR 프로젝트 섹션 없음/비어있음
 L1: 파일 있고 self_reported_staleness == true (최근 경력 미갱신)
 L2: 결핍플래그_비율 >= 30% (Why부재, 정량없음, 명사나열 중 2종 이상이 조건을 충족)
-    → L1과 동시 해당 시 L1 우선 (최근 경험 dig 먼저)
+    → L1과 동시 해당 시 L1 우선 (최근 경험 interview 먼저)
 L3: 결핍플래그_비율 < 30% AND Why+정량+구조(두괄식/STAR) 충족 항목 다수
 ```
 
@@ -89,7 +91,7 @@ last_updated: YYYY-MM-DD
 - 필수 frontmatter: `type: project`, `title`, `period`, `role`, `stack`, `assess_flags`, `created`, `updated`
 - 필수 섹션: `## 요약`, `## 상세`, `## 결핍 플래그`
 
-L0 시: 빈 프로젝트 템플릿 1개(`wiki/projects/project-1.md`) 생성 — dig에서 채울 구조만.
+L0 시: 빈 프로젝트 템플릿 1개(`wiki/projects/project-1.md`) 생성 — interview에서 채울 구조만.
 
 ### 6단계: 진단 결과 출력
 
@@ -138,7 +140,7 @@ interview에서 하나씩 채워봅시다.
 진단 결과: L3 — 완성형
 
 Why+정량+구조가 잘 갖춰져 있습니다.
-dig는 확인/보완 위주로 빠르게 진행되고, export·타겟 최적화에 집중합니다.
+interview는 확인/보완 위주로 빠르게 진행되고, export·타겟 최적화에 집중합니다.
 
 다음: /resume:interview {id}
 ```

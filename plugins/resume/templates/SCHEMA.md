@@ -89,18 +89,18 @@ mentee_id: "{id}"              # 멘티 식별자
 vault_root: "/abs/path"        # 기록용 캐시, 경로 해소 진입점 아님
 pipeline_stage: init|assess|interview|star-sbi|export
 assess_level: L0|L1|L2|L3     # assess 완료 후 기록
-self_reported_staleness: bool  # start 1문항: 최근 경력 미갱신 여부
+self_reported_staleness: bool  # init 1문항: 최근 경력 미갱신 여부
 dig_state:
-  current_project_id: "..."    # 현재 dig 중인 프로젝트 id
+  current_project_id: "..."    # 현재 interview 중인 프로젝트 id
   questions_asked: N           # 누적 질문 수
-  projects_completed: []       # dig 완료된 프로젝트 id 목록
+  projects_completed: []       # interview 완료된 프로젝트 id 목록
   last_checkpoint: N           # 마지막 checkpoint 번호 (8질문 배수마다 +1)
 escalated: bool                # escalate-handoff.md 생성 여부
 last_updated: "YYYY-MM-DD"
 ---
 ```
 
-- `dig`: 시작 시 read, 8질문마다 checkpoint write, 중단 시 write.
+- `interview`: 시작 시 read, 8질문마다 checkpoint write, 중단 시 write.
 - checkpoint = 저장 보장 단위. "여기까지 저장됨. 언제든 재개 가능." 안내 포함.
 - 동시 실행(동일 id 멀티 터미널) 비지원 — 파일 락 없음.
 

@@ -36,8 +36,7 @@ allowed-tools: Bash
 
 `.resume-session` 읽기. `pipeline_stage` 가 `init` 이면:
 ```
-아직 assess가 완료되지 않았습니다.
-/resume:init {id} 먼저, /resume:assess {id} 를 실행하세요.
+init은 완료됐습니다. /resume:assess {id} 를 실행하세요.
 ```
 `pipeline_stage` 가 `assess` 이면:
 ```

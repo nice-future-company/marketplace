@@ -3,7 +3,7 @@
 이 디렉토리는 멘토링 정제 자료를 저장합니다.
 
 ## 파일 규칙
-- 위치: `data/mentoring/topics/*.md`
+- 위치: `data/mentoring/topics/*.md` (topics/ 디렉토리는 데이터팩 설치 시 생성)
 - 파일명: `kebab-case` (예: `problem-solving.md`, `communication.md`)
 - 각 파일은 다음 섹션을 권장:
   - `# Topic`

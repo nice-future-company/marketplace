@@ -136,7 +136,7 @@ for f in "$MENTEE_ROOT"/wiki/episodes/*.md; do
   fi
 done
 
-# ── 5b. wiki/skills/*.md — frontmatter + 섹션 헤더 ─────────────────────────
+# ── 5b. wiki/skills/*.md — frontmatter + 섹션 헤더 + level enum ────────────
 for f in "$MENTEE_ROOT"/wiki/skills/*.md; do
   [[ -f "$f" ]] || continue
   base=$(basename "$f")
@@ -147,6 +147,14 @@ for f in "$MENTEE_ROOT"/wiki/skills/*.md; do
       fail "skills/$base: frontmatter.$field missing"
     fi
   done
+  # level enum: 아는것|해본것|설명가능|최적화경험
+  lvl=$(grep "^level:" "$f" 2>/dev/null | head -1 | sed 's/^level:[[:space:]]*//' | tr -d '"')
+  case "$lvl" in
+    아는것|해본것|설명가능|최적화경험)
+      ok "skills/$base: level enum valid ($lvl)" ;;
+    *)
+      fail "skills/$base: level enum invalid ('$lvl') — 허용값: 아는것|해본것|설명가능|최적화경험" ;;
+  esac
   for section in "## 요약" "## 근거" "## 결핍 플래그"; do
     if grep -qF "$section" "$f" 2>/dev/null; then
       ok "skills/$base: section '$section'"
