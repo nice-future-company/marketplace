@@ -48,7 +48,7 @@ vault: {MENTEE_ROOT}
   [완료] init      — vault 초기화 완료
   [완료] assess    — L{N}: {assess_level 설명}
   [진행중] interview — 프로젝트 {A}/{B} 완료, 질문 {questions_asked}개, checkpoint {last_checkpoint}
-  [대기] format
+  [대기] star-sbi
   [대기] export
 
 산출물:
@@ -62,6 +62,7 @@ vault: {MENTEE_ROOT}
 escalate: {true이면 "예 — escalate-handoff.md 생성됨" / false이면 "아니오"}
 
 다음 명령: /resume:{다음 pipeline_stage} {id}
+{escalated:true 이면 추가 출력: "escalate 후 계속: /resume:interview {id} 재실행 또는 escalate-handoff.md 멘토 전달 후 /resume:star-sbi {id}"}
 ```
 
 파이프라인 단계 표시 기준:
@@ -72,7 +73,7 @@ escalate: {true이면 "예 — escalate-handoff.md 생성됨" / false이면 "아
 - 순서: `init` → `assess` → `interview` → `star-sbi` → `export`
 
 assess_level 설명:
-- L0: 이력서 없음/부족 — 빈템플릿 dig 경로
+- L0: 이력서 없음/부족 — 빈템플릿 interview 경로
 - L1: 최근 경력 미갱신
 - L2: 보강 필요 ({결핍플래그_비율}%)
 - L3: 완성형

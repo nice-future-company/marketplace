@@ -12,7 +12,7 @@
 ## 설치
 
 ```bash
-claude --plugin-dir /path/to/leaphop-marketplace/plugins/resume
+claude --plugin-dir /path/to/nice-future-company/marketplace/plugins/resume
 ```
 
 ---
@@ -70,7 +70,7 @@ init → assess → interview (확인 위주) → star-sbi → export
 | `init` | init 완료 |
 | `assess` | assess 진행 준비 |
 | `interview` | interview 진행 준비 |
-| `format` | star-sbi 진행 준비 |
+| `star-sbi` | star-sbi 진행 준비 |
 | `export` | export 완료 |
 
 ---
@@ -124,10 +124,9 @@ vault 폴더(`~/.resume-vaults/<id>/`)를 Obsidian에서 열면 wiki 링크와 �
 ## 유료 데이터팩 연결 지점 (미출시)
 
 `data/mentoring/topics/` 는 선택적 로드 훅으로 연결 지점만 예약되어 있습니다.
-데이터팩이 없으면 방법론 fallback으로 동작합니다.
+데이터팩 미출시(topics/ 디렉토리는 데이터팩 설치 시 생성). 데이터팩이 없으면 방법론 fallback으로 동작합니다.
 
-현재 `data/mentoring/topics/` 는 비어 있습니다.
-유료 데이터팩 출시 시 이 위치에 연결됩니다.
+데이터팩 미출시. `data/mentoring/topics/` 디렉토리는 데이터팩 설치 시 생성됩니다.
 
 ---
 
@@ -210,12 +209,7 @@ resume/
 ├── data/
 │   └── mentoring/
 │       ├── index.md
-│       ├── pii-masking-policy.md
-│       └── topics/                  ← 유료 데이터팩 연결 지점 (현재 비어있음)
-├── agents/
-│   └── mentoring-advisor.md
-├── hooks/
-│   └── hooks.json
+│       └── pii-masking-policy.md    ← topics/ 는 데이터팩 설치 시 생성
 └── README.md
 ```
 

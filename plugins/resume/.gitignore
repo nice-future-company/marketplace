@@ -22,6 +22,7 @@ node_modules/
 # 기본 vault 위치는 ~/.resume-vaults/ (repo 외부).
 # mentee-vault/ 는 repo 내부 경로를 vault_root로 지정한 경우를 대비한 안전망.
 mentee-vault/
+*-vaults/
 *.resume-session
 .resume-config.json
 

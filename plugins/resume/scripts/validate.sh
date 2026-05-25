@@ -8,8 +8,11 @@
 # LLM 생성 내용의 정확성은 범위 밖 (비결정적).
 set -euo pipefail
 
+SELF_TEST=false
+
 # 인자 없으면 _fixture self-test
 if [[ -z "${1:-}" ]]; then
+  SELF_TEST=true
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   FIXTURE_ROOT="$SCRIPT_DIR/../tests/_fixture"
   if [[ ! -d "$FIXTURE_ROOT" ]]; then
@@ -17,7 +20,12 @@ if [[ -z "${1:-}" ]]; then
     exit 1
   fi
   echo "=== self-test: tests/_fixture ==="
-  exec "$0" "$FIXTURE_ROOT"
+  exec "$0" "$FIXTURE_ROOT" --self-test
+fi
+
+# --self-test 플래그 처리
+if [[ "${2:-}" == "--self-test" ]]; then
+  SELF_TEST=true
 fi
 
 MENTEE_ROOT="${1}"
@@ -68,6 +76,13 @@ if [[ -f "$SESSION" ]]; then
       fail "session.dig_state.$subfield missing"
     fi
   done
+
+  # pipeline_stage가 export이면 resume 산출물 존재 체크
+  pipeline_stage=$(grep "^pipeline_stage:" "$SESSION" 2>/dev/null | head -1 | awk '{print $2}')
+  if [[ "$pipeline_stage" == "export" ]]; then
+    check_file "resume/draft.md"
+    check_file "resume/final.html"
+  fi
 fi
 
 # ── 4. wiki/projects/*.md — frontmatter + 섹션 헤더 ────────────────────────
@@ -121,24 +136,54 @@ for f in "$MENTEE_ROOT"/wiki/episodes/*.md; do
   fi
 done
 
-# ── 6. examples/sample-vault 핵심 파일 존재 (self-test 시에만) ───────────────
-SCRIPT_DIR_V="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-EXAMPLES_VAULT="$SCRIPT_DIR_V/../examples/sample-vault"
-if [[ -d "$EXAMPLES_VAULT" ]]; then
-  for ef in \
-    "raw/resume-original.md" \
-    "wiki/projects/fintech-startup.md" \
-    "wiki/skills/redis.md" \
-    "wiki/episodes/redis-cache.md" \
-    "resume/draft.md" \
-    "resume/final.html" \
-    ".resume-session"; do
-    if [[ -f "$EXAMPLES_VAULT/$ef" ]]; then
-      ok "examples/sample-vault/$ef"
+# ── 5b. wiki/skills/*.md — frontmatter + 섹션 헤더 + level enum ────────────
+for f in "$MENTEE_ROOT"/wiki/skills/*.md; do
+  [[ -f "$f" ]] || continue
+  base=$(basename "$f")
+  for field in type title level; do
+    if grep -q "^${field}:" "$f" 2>/dev/null; then
+      ok "skills/$base: frontmatter.$field"
     else
-      fail "examples/sample-vault/$ef missing"
+      fail "skills/$base: frontmatter.$field missing"
     fi
   done
+  # level enum: 아는것|해본것|설명가능|최적화경험
+  lvl=$(grep "^level:" "$f" 2>/dev/null | head -1 | sed 's/^level:[[:space:]]*//' | tr -d '"')
+  case "$lvl" in
+    아는것|해본것|설명가능|최적화경험)
+      ok "skills/$base: level enum valid ($lvl)" ;;
+    *)
+      fail "skills/$base: level enum invalid ('$lvl') — 허용값: 아는것|해본것|설명가능|최적화경험" ;;
+  esac
+  for section in "## 요약" "## 근거" "## 결핍 플래그"; do
+    if grep -qF "$section" "$f" 2>/dev/null; then
+      ok "skills/$base: section '$section'"
+    else
+      fail "skills/$base: section '$section' missing"
+    fi
+  done
+done
+
+# ── 6. examples/sample-vault 핵심 파일 존재 (self-test 시에만) ───────────────
+if [[ "$SELF_TEST" == "true" ]]; then
+  SCRIPT_DIR_V="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  EXAMPLES_VAULT="$SCRIPT_DIR_V/../examples/sample-vault"
+  if [[ -d "$EXAMPLES_VAULT" ]]; then
+    for ef in \
+      "raw/resume-original.md" \
+      "wiki/projects/fintech-startup.md" \
+      "wiki/skills/redis.md" \
+      "wiki/episodes/redis-cache.md" \
+      "resume/draft.md" \
+      "resume/final.html" \
+      ".resume-session"; do
+      if [[ -f "$EXAMPLES_VAULT/$ef" ]]; then
+        ok "examples/sample-vault/$ef"
+      else
+        fail "examples/sample-vault/$ef missing"
+      fi
+    done
+  fi
 fi
 
 # ── 7. 결과 요약 ────────────────────────────────────────────────────────────

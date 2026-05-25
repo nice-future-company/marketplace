@@ -34,7 +34,11 @@ allowed-tools: Bash
 
 `scripts/resolve-vault-root.sh <id>` 로 MENTEE_ROOT 확인.
 
-`.resume-session` 읽기. `pipeline_stage` 가 `init` 또는 `assess` 이면 인터뷰 미실행 상태이므로 중단:
+`.resume-session` 읽기. `pipeline_stage` 가 `init` 이면:
+```
+init은 완료됐습니다. /resume:assess {id} 를 실행하세요.
+```
+`pipeline_stage` 가 `assess` 이면:
 ```
 아직 assess가 완료되지 않았습니다.
 /resume:assess {id} 를 먼저 실행하세요.
@@ -235,6 +239,10 @@ escalate_reason: []   # 위 조건 중 해당 항목
 
 다음: /resume:star-sbi {id}
 ```
+
+escalate 후 계속하는 경우:
+- `/resume:interview {id}` 재실행 (인터뷰 심화 세션 후 재개)
+- 또는 `escalate-handoff.md` 를 멘토에게 전달한 후 `/resume:star-sbi {id}` 직접 실행
 
 ---
 
