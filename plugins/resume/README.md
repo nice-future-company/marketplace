@@ -12,7 +12,7 @@
 ## 설치
 
 ```bash
-claude --plugin-dir /path/to/leaphop-marketplace/plugins/resume
+claude --plugin-dir /path/to/nice-future-company/marketplace/plugins/resume
 ```
 
 ---
@@ -70,7 +70,7 @@ init → assess → interview (확인 위주) → star-sbi → export
 | `init` | init 완료 |
 | `assess` | assess 진행 준비 |
 | `interview` | interview 진행 준비 |
-| `format` | star-sbi 진행 준비 |
+| `star-sbi` | star-sbi 진행 준비 |
 | `export` | export 완료 |
 
 ---

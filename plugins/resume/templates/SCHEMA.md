@@ -6,7 +6,7 @@
 
 ## vault 개요
 
-이 디렉토리는 [resume](https://github.com/leaphop/leaphop-marketplace/tree/main/plugins/resume) 플러그인이 생성한 **개인 이력서 작업 vault**입니다.
+이 디렉토리는 [resume](https://github.com/nice-future-company/marketplace/tree/main/plugins/resume) 플러그인이 생성한 **개인 이력서 작업 vault**입니다.
 
 - william-vault 경량 fork 구조를 차용하되, **william-vault와 비동기화** — 별도 운영.
 - raw/ 아래 원본은 불변. AI는 wiki/ 와 resume/ 만 편집.
@@ -66,7 +66,7 @@ type: episode
 title: "에피소드 제목"
 format: STAR | SBI
 project_ref: "wiki/projects/xxx.md"
-inferred: false         # true이면 frame에서 > 추정: 마커 포함
+inferred: false         # true이면 star-sbi에서 > 추정: 마커 포함
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---

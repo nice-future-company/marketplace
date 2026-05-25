@@ -18,7 +18,8 @@ two-pass 방식: `draft.md` (추정 마커 포함) → `final.html` (마커 stri
 
 `scripts/resolve-vault-root.sh <id>` 로 MENTEE_ROOT 확인.
 
-`.resume-session` 읽기. `pipeline_stage` 가 `init`, `assess`, `interview`, `star-sbi` 중 하나이면 export 미실행 상태이므로 중단:
+`.resume-session` 읽기. `pipeline_stage` 가 `export` 이외이면 중단:
+- `init`/`assess`/`interview`/`star-sbi` 인 경우 (수동 변경 또는 star-sbi 미완료):
 ```
 아직 star-sbi가 완료되지 않았습니다.
 /resume:star-sbi {id} 를 먼저 실행하세요.
